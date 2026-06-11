@@ -41,7 +41,7 @@ services:
       - key: RUN_MIGRATIONS
         value: true
       - key: RUN_SEEDERS
-        value: false
+        value: true
 
 databases:
   - name: pam-water-billing-db

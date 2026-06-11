@@ -189,7 +189,7 @@ Buat `APP_KEY` dengan:
 php artisan key:generate --show
 ```
 
-Untuk demo pertama, ubah `RUN_SEEDERS=true` di Render Environment sebelum deploy pertama agar akun demo dan data contoh otomatis dibuat. Setelah deploy berhasil, ubah kembali ke `false`.
+Blueprint memakai `RUN_SEEDERS=true` agar akun demo dan data contoh otomatis dibuat pada deploy pertama. Setelah deploy berhasil, ubah env `RUN_SEEDERS=false` di Render agar seeder tidak dijalankan setiap deploy berikutnya.
 
 ## Lisensi
 
