@@ -38,9 +38,9 @@ RUN composer install --no-dev --prefer-dist --no-interaction --no-progress --no-
 
 COPY . .
 COPY --from=assets /app/public/build ./public/build
-COPY docker/entrypoint.sh /usr/local/bin/koyeb-entrypoint
+COPY docker/entrypoint.sh /usr/local/bin/app-entrypoint
 
-RUN chmod +x /usr/local/bin/koyeb-entrypoint \
+RUN chmod +x /usr/local/bin/app-entrypoint \
     && mkdir -p storage/app/public storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache \
     && composer dump-autoload --optimize \
@@ -49,9 +49,9 @@ RUN chmod +x /usr/local/bin/koyeb-entrypoint \
 ENV APP_ENV=production
 ENV APP_DEBUG=false
 ENV LOG_CHANNEL=stderr
-ENV PORT=8000
+ENV PORT=10000
 
-EXPOSE 8000
+EXPOSE 10000
 
-ENTRYPOINT ["koyeb-entrypoint"]
+ENTRYPOINT ["app-entrypoint"]
 CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"]

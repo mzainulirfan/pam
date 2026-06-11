@@ -146,6 +146,7 @@ APP_DEBUG=false
 APP_URL=https://domain-koyeb-anda
 APP_TIMEZONE=Asia/Jakarta
 LOG_CHANNEL=stderr
+PORT=10000
 
 DB_CONNECTION=pgsql
 DATABASE_URL=postgresql://user:password@host:5432/database?sslmode=require
@@ -164,6 +165,31 @@ php artisan key:generate --show
 ```
 
 Untuk demo pertama, `RUN_SEEDERS` boleh diisi `true` agar akun demo dan data contoh otomatis dibuat. Setelah data seed masuk, ubah kembali ke `false` agar seeder tidak dijalankan setiap deploy.
+
+### Deploy ke Render
+
+Repository ini juga menyediakan `render.yaml` untuk deploy sebagai Render Blueprint.
+
+Langkah ringkas:
+
+1. Buka Render Dashboard, pilih **New** lalu **Blueprint**.
+2. Hubungkan repository GitHub `mzainulirfan/pam`.
+3. Render akan membaca `render.yaml`, membuat web service Docker, dan membuat PostgreSQL `pam-water-billing-db`.
+4. Isi secret/env yang diminta:
+
+```env
+APP_KEY=base64:isi_dengan_key_laravel
+APP_URL=https://nama-service.onrender.com
+PORT=10000
+```
+
+Buat `APP_KEY` dengan:
+
+```bash
+php artisan key:generate --show
+```
+
+Untuk demo pertama, ubah `RUN_SEEDERS=true` di Render Environment sebelum deploy pertama agar akun demo dan data contoh otomatis dibuat. Setelah deploy berhasil, ubah kembali ke `false`.
 
 ## Lisensi
 
