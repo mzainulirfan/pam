@@ -43,7 +43,7 @@ class WaterBillingFlowTest extends TestCase
                 'current_reading' => 1235,
                 'is_manual_corrected' => false,
             ])
-            ->assertRedirect(route('mobile.customers.index'));
+            ->assertRedirect(route('mobile.meter-readings.create', $customer));
 
         $bill = Bill::firstOrFail();
         $this->assertSame(35, $bill->usage_m3);

@@ -125,6 +125,46 @@ Untuk menjalankannya otomatis, tambahkan command tersebut ke scheduler Laravel a
 - Pastikan permission folder `storage` dan `bootstrap/cache` dapat ditulis oleh web server.
 - Jalankan `php artisan migrate --force` saat deployment.
 
+### Deploy ke Koyeb
+
+Repository ini sudah menyediakan `Dockerfile` untuk deploy ke Koyeb.
+
+Langkah ringkas:
+
+1. Push repository ke GitHub.
+2. Buat database PostgreSQL eksternal, misalnya Neon, Supabase, atau provider lain.
+3. Di Koyeb, buat Web Service baru dari repository GitHub.
+4. Pilih deployment menggunakan Dockerfile.
+5. Set port service ke `8000`.
+6. Isi environment variable berikut:
+
+```env
+APP_NAME="Sistem Tagihan Air"
+APP_ENV=production
+APP_KEY=base64:isi_dengan_key_laravel
+APP_DEBUG=false
+APP_URL=https://domain-koyeb-anda
+APP_TIMEZONE=Asia/Jakarta
+LOG_CHANNEL=stderr
+
+DB_CONNECTION=pgsql
+DATABASE_URL=postgresql://user:password@host:5432/database?sslmode=require
+
+SESSION_DRIVER=database
+CACHE_STORE=database
+QUEUE_CONNECTION=database
+RUN_MIGRATIONS=true
+RUN_SEEDERS=false
+```
+
+Buat `APP_KEY` dengan:
+
+```bash
+php artisan key:generate --show
+```
+
+Untuk demo pertama, `RUN_SEEDERS` boleh diisi `true` agar akun demo dan data contoh otomatis dibuat. Setelah data seed masuk, ubah kembali ke `false` agar seeder tidak dijalankan setiap deploy.
+
 ## Lisensi
 
 Proyek ini menggunakan lisensi MIT mengikuti konfigurasi Laravel default.
