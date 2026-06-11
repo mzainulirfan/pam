@@ -1,0 +1,36 @@
+<svg width="1800" height="1100" viewBox="0 0 1800 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1800" height="1100" fill="#0B1220"/>
+  <path d="M0 786C169 700 292 757 454 689C662 602 761 445 987 437C1220 429 1321 588 1530 530C1643 499 1719 426 1800 358V1100H0V786Z" fill="#132237"/>
+  <path d="M0 837C170 766 319 817 506 750C737 667 851 523 1089 535C1321 547 1405 672 1600 623C1680 603 1741 563 1800 521V1100H0V837Z" fill="#17314B"/>
+  <path d="M0 919C172 867 344 897 563 835C831 759 946 653 1184 675C1388 694 1482 773 1650 745C1710 735 1759 715 1800 692V1100H0V919Z" fill="#1D4B69"/>
+  <g opacity="0.42">
+    <circle cx="1238" cy="285" r="156" fill="#E5F2FF"/>
+    <circle cx="1238" cy="285" r="108" fill="#9CC9F1"/>
+    <circle cx="1238" cy="285" r="54" fill="#355B7F"/>
+  </g>
+  <g opacity="0.9">
+    <rect x="260" y="569" width="328" height="190" rx="18" fill="#E5E7EB"/>
+    <rect x="298" y="606" width="91" height="118" rx="10" fill="#334155"/>
+    <rect x="421" y="606" width="129" height="26" rx="6" fill="#94A3B8"/>
+    <rect x="421" y="651" width="96" height="19" rx="5" fill="#CBD5E1"/>
+    <rect x="421" y="690" width="116" height="19" rx="5" fill="#CBD5E1"/>
+    <path d="M190 759H740" stroke="#E5E7EB" stroke-width="20" stroke-linecap="round"/>
+  </g>
+  <g opacity="0.78">
+    <rect x="1055" y="591" width="345" height="202" rx="24" fill="#F8FAFC"/>
+    <rect x="1096" y="635" width="94" height="112" rx="14" fill="#0F172A"/>
+    <path d="M1119 681C1139 642 1165 642 1179 681C1193 720 1168 737 1149 737C1130 737 1099 720 1119 681Z" fill="#38BDF8"/>
+    <rect x="1228" y="632" width="123" height="18" rx="6" fill="#64748B"/>
+    <rect x="1228" y="672" width="91" height="16" rx="5" fill="#CBD5E1"/>
+    <rect x="1228" y="708" width="106" height="16" rx="5" fill="#CBD5E1"/>
+  </g>
+  <g opacity="0.6">
+    <path d="M677 655C789 571 877 598 969 526C1065 451 1127 317 1306 312" stroke="#E2E8F0" stroke-width="16" stroke-linecap="round"/>
+    <path d="M692 699C824 630 921 652 1026 602C1128 553 1183 458 1344 467" stroke="#93C5FD" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g opacity="0.18">
+    <circle cx="254" cy="258" r="72" stroke="#F8FAFC" stroke-width="18"/>
+    <circle cx="1490" cy="214" r="47" stroke="#F8FAFC" stroke-width="12"/>
+    <circle cx="785" cy="249" r="34" stroke="#F8FAFC" stroke-width="10"/>
+  </g>
+</svg>
