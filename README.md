@@ -1,66 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistem Tagihan Air
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi operasional PAM/layanan air untuk mengelola pelanggan, pencatatan meter, tagihan, pembayaran, dan laporan periode. Aplikasi ini dibangun dengan Laravel 11, Inertia React, TypeScript, Tailwind CSS, dan SQLite/MySQL.
 
-## About Laravel
+## Fitur Utama
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Dashboard ringkasan operasional berdasarkan periode tagihan.
+- Manajemen area layanan, pelanggan, meter pelanggan, tarif, dan periode tagihan.
+- Pencatatan meter versi mobile untuk petugas lapangan.
+- Perhitungan tagihan otomatis dari pemakaian meter dan tarif aktif.
+- Status tagihan `unpaid`, `partial`, `paid`, dan `overdue`.
+- Pencatatan pembayaran dengan metode bayar dan riwayat transaksi.
+- Cetak struk setelah pencatatan meter.
+- Laporan tagihan, pembayaran, tunggakan, dan kolektibilitas per periode.
+- Command palette untuk pencarian menu di dashboard.
+- Perintah scheduler untuk memperbarui tagihan jatuh tempo menjadi overdue.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP 8.2+
+- Laravel 11
+- Inertia.js React
+- React 18 + TypeScript
+- Tailwind CSS
+- Spatie Laravel Permission
+- Vite
 
-## Learning Laravel
+## Instalasi Lokal
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Gunakan SQLite untuk setup cepat:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+touch database/database.sqlite
+```
 
-## Laravel Sponsors
+Pastikan konfigurasi database di `.env` sesuai. Contoh SQLite:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```env
+DB_CONNECTION=sqlite
+DB_DATABASE=/absolute/path/to/database/database.sqlite
+```
 
-### Premium Partners
+Jalankan migrasi dan seed data contoh:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+php artisan migrate --seed
+```
 
-## Contributing
+Jalankan aplikasi:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan serve
+npm run dev
+```
 
-## Code of Conduct
+Buka `http://127.0.0.1:8000`.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Akun Demo
 
-## Security Vulnerabilities
+Seeder membuat beberapa akun berikut dengan password `password`:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+| Role | Email |
+| --- | --- |
+| Admin | `admin@example.com` |
+| Petugas | `petugas@example.com` |
+| Kasir | `kasir@example.com` |
 
-## License
+Seeder juga membuat data area, tarif aktif, periode Mei/Juni 2026, metode pembayaran, pelanggan contoh, pencatatan meter, tagihan, dan beberapa pembayaran.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Modul Aplikasi
+
+| Modul | Keterangan |
+| --- | --- |
+| Dashboard | Ringkasan pelanggan, tagihan, pembayaran, tunggakan, dan progres pencatatan sesuai filter periode. |
+| Area | Data wilayah/blok pelanggan. |
+| Pelanggan | Data pelanggan, meter, status layanan, alamat, dan riwayat tagihan. |
+| Tarif | Tarif aktif, biaya tetap, denda, dan biaya admin. |
+| Periode | Periode tagihan bulanan dengan tanggal mulai, selesai, jatuh tempo, dan status. |
+| Tagihan | Daftar dan detail tagihan pelanggan. |
+| Pembayaran | Pencatatan pembayaran dan status sisa tagihan. |
+| Laporan | Rekap operasional berdasarkan periode. |
+| Mobile Petugas | Daftar pelanggan mobile dan form pencatatan meter lapangan. |
+
+## Alur Operasional
+
+1. Admin mengatur area, tarif aktif, pelanggan, dan periode tagihan.
+2. Petugas membuka menu mobile, memilih pelanggan, lalu mencatat angka meter.
+3. Sistem menghitung pemakaian dan membuat tagihan dari tarif aktif.
+4. Kasir mencatat pembayaran penuh atau sebagian.
+5. Dashboard dan laporan menampilkan status terbaru berdasarkan periode.
+
+## Perintah Penting
+
+Build frontend produksi:
+
+```bash
+npm run build
+```
+
+Jalankan test:
+
+```bash
+php artisan test
+```
+
+Update tagihan jatuh tempo menjadi overdue:
+
+```bash
+php artisan bills:update-overdue
+```
+
+Untuk menjalankannya otomatis, tambahkan command tersebut ke scheduler Laravel atau cron sesuai kebutuhan deployment.
+
+## Catatan Deployment
+
+- Jangan commit `.env`, database lokal, `vendor`, `node_modules`, `public/build`, atau file runtime storage.
+- Jalankan `composer install --no-dev --optimize-autoloader` dan `npm run build` di environment produksi.
+- Pastikan permission folder `storage` dan `bootstrap/cache` dapat ditulis oleh web server.
+- Jalankan `php artisan migrate --force` saat deployment.
+
+## Lisensi
+
+Proyek ini menggunakan lisensi MIT mengikuti konfigurasi Laravel default.
