@@ -191,6 +191,45 @@ php artisan key:generate --show
 
 Blueprint memakai `RUN_SEEDERS=true` agar akun demo dan data contoh otomatis dibuat pada deploy pertama. Setelah deploy berhasil, ubah env `RUN_SEEDERS=false` di Render agar seeder tidak dijalankan setiap deploy berikutnya.
 
+### Deploy ke Railway
+
+Repository ini menyediakan `railway.json` dan `Dockerfile`. Railway akan membangun service memakai Dockerfile di root repository.
+
+Langkah ringkas:
+
+1. Buat project baru di Railway.
+2. Tambahkan service PostgreSQL.
+3. Tambahkan service dari GitHub repo `mzainulirfan/pam`.
+4. Buka tab Variables pada service aplikasi.
+5. Isi environment variable berikut:
+
+```env
+APP_NAME="Sistem Tagihan Air"
+APP_ENV=production
+APP_KEY=base64:isi_dengan_key_laravel
+APP_DEBUG=false
+APP_URL=https://domain-railway-anda.up.railway.app
+APP_TIMEZONE=Asia/Jakarta
+LOG_CHANNEL=stderr
+
+DB_CONNECTION=pgsql
+DATABASE_URL=${{Postgres.DATABASE_URL}}
+
+SESSION_DRIVER=database
+CACHE_STORE=database
+QUEUE_CONNECTION=database
+RUN_MIGRATIONS=true
+RUN_SEEDERS=true
+```
+
+Buat `APP_KEY` dengan:
+
+```bash
+php artisan key:generate --show
+```
+
+Setelah deploy pertama berhasil dan akun demo sudah dibuat, ubah `RUN_SEEDERS=false` lalu redeploy agar seeder tidak dijalankan terus. Setelah service aktif, buka tab Networking di Railway dan generate domain publik.
+
 ## Lisensi
 
 Proyek ini menggunakan lisensi MIT mengikuti konfigurasi Laravel default.
